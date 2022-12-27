@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* COLORS */
+  --primary: hsl(25, 97%, 53%);
+  --white: hsl(0, 0%, 100%);
+  --light-gray: hsl(217, 12%, 63%);
+  --medium-gray: hsl(216, 12%, 54%);
+  --dark-blue: hsl(215, 20%, 16%);
+  --very-dark-blue: hsl(216, 12%, 8%);
+
+  --card-width: 325px;
+  --card-height: 350px;
+
+  font-size: 15px; /* 1rem = 15px */
+}
+
+:root,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Overpass', sans-serif;
+  background-color: var(--very-dark-blue);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+button {
+  font: inherit;
+}
+
+/* CARD */
+
+.card {
+  width: var(--card-width);
+  height: var(--card-height);
+  perspective: 800px;
+}
+
+.card-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 450ms ease;
+}
+
+.card.rotate .card-content {
+  transform: rotateY(0.5turn);
+}
+
+.card-front,
+.card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: var(--dark-blue);
+  border-radius: 1rem;
+  backface-visibility: hidden;
+}
+
+.card-content .card-title {
+  font-size: 1.6rem;
+}
+
+.card-content .card-description {
+  color: var(--light-gray);
+  line-height: 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* CARD FRONT */
+
+.card-front .card-icon {
+  align-self: flex-start;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.9rem;
+  border-radius: 50%;
+  margin-bottom: 1.1rem;
+  background-color: #273039;
+}
+
+.card-front .card-icon img {
+  width: 14px;
+  height: 14px;
+}
+
+.card-front .card-title {
+  margin-bottom: 0.8rem;
+}
+
+.card-front .card-description {
+  margin-bottom: 1.8rem;
+}
+
+.card-front .ratings {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1.25rem;
+}
+
+.card-front .btn-rating {
+  flex: 1;
+  border: none;
+  border-radius: 100%;
+  background-color: #273039;
+  color: var(--light-gray);
+  font-weight: bold;
+  aspect-ratio: 1/1;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+}
+
+.card-front .btn-rating:hover,
+.card-front .btn-rating:focus-visible {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.card-front .btn-rating.active {
+  background-color: var(--light-gray);
+  color: var(--white);
+}
+
+.card-front .btn-rating span {
+  vertical-align: sub;
+}
+
+.card-front .btn-submit {
+  width: 100%;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 0.9rem 1.3rem;
+  border-radius: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.15rem;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+}
+
+.card-front .btn-submit:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.card-front .btn-submit:hover {
+  background-color: var(--white);
+  color: var(--primary);
+}
+
+/* CARD BACK */
+
+.card-back {
+  text-align: center;
+  transform: rotateY(0.5turn);
+}
+
+.card-back .card-illustration {
+  width: 140px;
+  margin: 0 auto 1.65rem;
+}
+
+.card-back .rating-info {
+  align-self: center;
+  line-height: 1rem;
+  background-color: #273039;
+  color: var(--primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.card-back .card-title {
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --card-width: 415px;
+    --card-height: 415px;
+
+    font-size: 16px;
+  }
+
+  .card-front,
+  .card-back {
+    border-radius: 2rem;
+    padding: 2rem;
+  }
+
+  .card-front .card-icon {
+    margin-bottom: 1.8rem;
+  }
+
+  .card-front .card-icon img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .card-front .ratings {
+    gap: 1.5rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .card-front .btn-rating {
+    font-size: 1rem;
+  }
+
+  .card-back .card-illustration {
+    width: 175px;
+  }
+}
+
+/* FOOTER */
+
+.attribution {
+  padding: 1rem;
+  color: var(--white);
+  text-align: center;
+}
+
+.attribution a {
+  color: inherit;
+}
